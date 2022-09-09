@@ -2,6 +2,8 @@
 *{
     margin: 0;
     padding: 0;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
 }
 
 img.Welcome{
@@ -25,8 +27,7 @@ img.palette{
     display: flex;
 }
 .nav-list{
-    width: 50%;
-    background-color: blanchedalmond;
+    width: 100%;
     display: flex;
     align-items: right;
 }
@@ -41,16 +42,105 @@ img.palette{
 }
 
 .h1{
-    font-size: 50%;
+    padding: 10px;
+    width: 100vw;
+    text-align: center;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.h2{
+    padding: 10px;
+    width: 100vw;
+    text-align: center;
+    color: black;
+    margin-bottom: 20px;
+}
+
+img {
+    width: 150px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.paintingCards { 
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0 15px 0 15px;
+    position: relative;
+    background: white;
+}
+
+.outline::before{
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    background: linear-gradient(45deg, #ad27ad, #26A9E0, #82f057, #e3f057);  
+    background-size: 200%;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    z-index: -1;
+    border-radius: 0 20px 0 20px;
+  }
+
+ h1,h2, h3, h4, button {
+    margin: 10px;
+    text-align: center;
+}
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:rgb(238, 198, 65);
+}
+  
+
+.rightNav{
+    right: 0; 
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.profilePicture { 
     display: flex;
     justify-content: center;
-    align-items: center;
+    position: absolute;
+    right: 50%;
+    left: 50%;
+    top: 14%;
 }
-.h2{
-    font-size: 15%;
+
+.width100 {
+    width: 100%;
 }
-.rightNav{
-    background-color: blanchedalmond;
-    width:50%;
-    text-align: right;
+
+.hide {
+    display: none;
 }
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+  }
+  .fa:hover {
+    opacity: 0.7;
+  }
+  
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+  

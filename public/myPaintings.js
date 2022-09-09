@@ -1,17 +1,47 @@
-const profileInfo = document.querySelector('#paintingCards')
+const profileInfo = document.querySelector('#paintingCards') 
+const addPaintingLink = document.querySelector('#addPaintingLink')   
+const myPaintingLink = document.querySelector('#myPaintingLink')     
+const homeLink = document.querySelector('#homeLink')    
 
-console.log("- myPaintings js file - ")
+const urlParams = new URLSearchParams(location.search);
+const isAdmin = urlParams.get('isAdmin') 
  
-
-const makePaintingCardDisplay = (ProfileInfo) => {
+const makePaintingChoiceCard = (ProfileInfo) => {
     return `
-        <div class=""> 
+        <div class="paintingCards outline"> 
+        <img src='${ProfileInfo.imgUrl}' alt='${ProfileInfo.name}'/> 
         <h3>${ProfileInfo.name}</h3>
         <h4>Price: ${ProfileInfo.price}</h4>
-        <img src='${ProfileInfo.imgUrl}' alt='${ProfileInfo.name}'/> 
+         </div>
+    `
+}
+
+const makePaintingCardDisplay = (ProfileInfo) => {
+    let btnHtml = `<button class="buyBtn" onclick=buyPainting('${ProfileInfo.buyItLink}')> Buy </button>`;
+
+    if(isAdmin){
+        btnHtml = `<button class="updateBtn" onclick=updatePainting(${ProfileInfo.id})> Update </button>`;
+    }
+
+    return `
+        <div class="paintingCards outline"> 
+            <img src='${ProfileInfo.imgUrl}' alt='${ProfileInfo.name}'/> 
+            <h3>${ProfileInfo.name}</h3>
+            <h4>Price: ${ProfileInfo.price}</h4>
+            ${btnHtml} 
         </div>
     `
 }
+
+const updatePainting = (id) => {  
+    window.location.href = `/addPainting.html?id=${id}`; 
+}
+
+const buyPainting = (buyItLink) => {  
+    window.open(buyItLink); 
+}
+
+
 
 const getPaintings = () => {
     axios.get("/api/paintings")
@@ -28,6 +58,11 @@ const renderPaintings = (painting) => {
         profileInfo.innerHTML += cardHtml
     })
 }
-
-// profileDetailsBtn.addEventListener('click',getProfileDetails)
+ 
 getPaintings();
+
+if(isAdmin){
+    addPaintingLink.classList.remove('hide'); 
+    homeLink.href = './?isAdmin=true';
+    myPaintingLink.href = './myPaintings.html?isAdmin=true';
+}
