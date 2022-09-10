@@ -30,8 +30,7 @@ module.exports = {
     },
 
     addPainting:(req, res) => {
-        try {
-            console.log("Post---", req.body);
+        try { 
             let { name, imgUrl, buyItLink, price, description } = req.body 
             paintings.push({ id:globalId++, name, imgUrl, buyItLink, price, description});
             res.status(200).send("Painting successfully added.")

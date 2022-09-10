@@ -8,77 +8,79 @@
     <link rel="stylesheet" href="/index.css">
 </head>
 <body> 
-    <div>
+    <div class="bannerImageContainer">
         <img class="Welcome" src="https://i.etsystatic.com/isbl/545958/44791537/isbl_1680x420.44791537_pg2qym19.jpg?version=0">
         <div class="profilePicture">
             <img class="picture" src="https://i.etsystatic.com/isla/a50f24/47850309/isla_280x280.47850309_e7tw6wai.jpg?version=0">
         </div>
     </div>
-    <div class="width100"> 
+    <div class="container">
         <div class="rightNav">
             <nav class="navbar">
                 <ul class="nav-list">
                     <li><a id="homeLink" href="./">Home</a></li>
                     <li><a id="myPaintingLink" href="./myPaintings.html">My Paintings</a></li>
-                    <li id="addPaintingLink"><a href="./addPainting.html?isAdmin=true" >Add Painting</a></li>
+                    <li id="addPaintingLink" class="hide"><a href="./addPainting.html?isAdmin=true" >Add Painting</a></li>
                 </ul>
-            </nav>
-        </div>
-    </div>
-    <content>
-		<h1>Add Painting</h1>
-		<div class="flexBox">
-			<div class="inderContainer">
-				<form>
-					<div class="paddingTop20">
-						Name:
-                        <input 
-                            type='text'
-                            id="name"
-                            placeholder="What's the painting name"/>
-					</div>
-					<div class="paddingTop20">
-						Image URL:
-                        <input 
-                            type='text'
-                            id="img"
-                            placeholder='Paste an image URL'/>
-					</div>
-					<div class="paddingTop20">
-						Buy It Link:
-						<input 
-                            type='text'
-                            id="buyLink"
-                            placeholder='What is the buy link?'/>
-					</div>
-                    <div class="paddingTop20">
-						Price:
-						<input 
-                            type='text'
-                            id="price"
-                            placeholder='What is the price?'/>
-					</div>
-                    <div class="paddingTop20">
-						Description:
-						<input 
-                            type='textarea'
-                            id="description"
-                            placeholder='What is the description?'/>
-					</div>
-                    </div> 
-                    <div class="paddingTop20"> 
-                    <button class="button50Per hide" id="fortunePostButton">Add Painting</button>
-                    
-                    <button class="button50Per hide" id="updateButton">Update Painting</button>
+            </nav>  
+        </div >   
+    </div>    
+    <div class="addPaintingContainer"> 
+        <h1>Add Painting</h1>
+        
+        <div class="flexBox"> 
+            <form>
+                <div class="paddingTop10">
+                    <label>Name:</label>
+                    <input 
+                        type='text'
+                        id="name"
+                        placeholder="What's the painting name"/>
+                </div>
+                <div class="paddingTop10">
+                    <label>Price:</label>
+                    <input 
+                        type='text'
+                        id="price"
+                        placeholder='What is the price?'/>
+                </div>
+                <div class="paddingTop10">
+                    <label>Image URL:</label>
+                    <textarea  
+                        rows="4"
+                        id="img"
+                        placeholder='Paste an image URL'>
+                    </textarea>   
+                </div>
+                <div class="paddingTop10">
+                    <label>Buy It Link:</label>
+                    <textarea  
+                        rows="4"
+                        id="buyLink"
+                        placeholder='What is the buy link?'>
+                    </textarea>     
+                </div> 
+                <div class="paddingTop10">
+                    <label>Description:</label>
+                    <textarea  
+                        rows="4"
+                        id="description"
+                        placeholder='What is the description?'>
+                    </textarea>    
+                </div>
+                </div> 
 
-                    <button class="button50Per hide" id="deleteButton">Delete Painting</button>
-                    </div>  
-			    </form>
-			</div>
-        </div>    
- 
-    </content>
-    
+                <div class="paddingTop10"> 
+
+                <button class="button50Per hide" id="fortunePostButton">Add Painting</button>
+                
+                <button class="button50Per hide" id="updateButton">Update Painting</button>
+
+                <button class="button50Per hide" id="deleteButton">Delete Painting</button>
+                </div>  
+            </form> 
+        </div>   
+    </div>  
     
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/addPainting.js"></script>

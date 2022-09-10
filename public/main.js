@@ -16,14 +16,21 @@ const getProfileDetails = () => {
 
 
 const makeProfileInfoDisplay = (profileInfo) => {
-    const description = profileInfo.aboutMe.map((el) => `<p>${el}</p>`).join('')
-
+    const description = profileInfo.aboutMe.map((el) => `<p class="margin15">${el}</p>`).join('')
+    const socialPlatforms = profileInfo.socialPlatforms.map((socialPlatform) => `<a class="margin15" href="${socialPlatform.url}"> ${socialPlatform.mode}</a>`).join('')
+    
     return `
         <div class=""> 
-        <h3>${profileInfo.name}</h3>
-        <h4>${profileInfo.address}</h4>
-        ${description}
+            <h1>${profileInfo.name}</h1> 
+            <h2>${profileInfo.profileTitle}</h2> 
+            <h4>${profileInfo.address}</h4>
+            <div class="profileDescriptionContainer">
+                ${description}
+            </div>
         </div>
+        <div class="socialMediaContainer"> 
+            ${socialPlatforms} 
+        </div>   
     `
 }
 

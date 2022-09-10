@@ -25,23 +25,29 @@ const makePaintingCardDisplay = (ProfileInfo) => {
 
     return `
         <div class="paintingCards outline"> 
-            <img src='${ProfileInfo.imgUrl}' alt='${ProfileInfo.name}'/> 
-            <h3>${ProfileInfo.name}</h3>
-            <h4>Price: ${ProfileInfo.price}</h4>
-            ${btnHtml} 
+            <div class="cardImgContainer">
+                <img class="cardImg" src='${ProfileInfo.imgUrl}' alt='${ProfileInfo.name}'/> 
+            </div>
+            <div class="cardBelowContainer">
+                <h3>${ProfileInfo.name}</h3>
+                <h4>Price: ${ProfileInfo.price}</h4>
+                ${btnHtml} 
+            </div>
         </div>
     `
 }
 
 const updatePainting = (id) => {  
-    window.location.href = `/addPainting.html?id=${id}`; 
+    if(isAdmin){
+        window.location.href = `/addPainting.html?id=${id}&isAdmin=true`;  
+    } else { 
+        window.location.href = `/addPainting.html?id=${id}`; 
+    }
 }
 
 const buyPainting = (buyItLink) => {  
     window.open(buyItLink); 
-}
-
-
+} 
 
 const getPaintings = () => {
     axios.get("/api/paintings")

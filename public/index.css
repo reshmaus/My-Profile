@@ -1,10 +1,42 @@
 
 *{
     margin: 0;
-    padding: 0;
+    padding: 0; 
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:#fbe28c;
+}
+
+h1,h2, h3, h4 {
+    margin: 10px;
+    text-align: center;
+} 
+
+label {
+    display: block;
+    padding-bottom: 2px;
+}
+
+input{
+    width: 90%;
+    height: 25px;
+}
+
+textarea {
+    width: 90%;
+}
+
+button {
+    margin: 10px;
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 18px; 
+}  
 
 img.Welcome{
     width:100%;
@@ -12,20 +44,33 @@ img.Welcome{
     display: flex;
 }
 
-img.picture{
-width:120px;
-border: 3px solid white;
-border-radius: 80px;
-align-items: center;
+img.picture{ 
+    border: 3px solid white;
+    border-radius: 50%;
+    align-items: center;
+    height: auto;
+    width: 25%;
+    max-width: 250px;
+} 
+
+.profilePicture { 
+    position: absolute; 
+    left: 41%;
+    top: 44%;
+    width: 100%;
+    margin: 0;
 }
 
 img.palette{
     width: 50px;
     height: 40px;
 }
+
 .navbar{
     display: flex;
+    padding: 15px 15px 0px 15px;
 }
+
 .nav-list{
     width: 100%;
     display: flex;
@@ -34,7 +79,7 @@ img.palette{
 
 .nav-list li{
     list-style: none;
-    padding: 26px 30px;
+    padding: 25px 10px;
 }
 
 .nav-list li a:hover{
@@ -58,13 +103,26 @@ img.palette{
 }
 
 img {
-    width: 150px;
+    width: 140px;  
+}
+
+.bannerImageContainer {
+    position: relative;
 }
 
 .container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center;  
+    padding: 15px;
+    width: 100%;
+}
+
+.addPaintingContainer { 
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+    padding: 15px;
 }
 
 .paintingCards { 
@@ -72,10 +130,22 @@ img {
     padding: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     border-radius: 0 15px 0 15px;
     position: relative;
     background: white;
+    font-size: 18px; 
+    width: 175px;
+} 
+
+.cardImg {
+    width: auto;
+    height: 115px;
+} 
+
+.cardBelowContainer { 
+    text-align: center; 
 }
 
 .outline::before{
@@ -89,35 +159,14 @@ img {
     height: calc(100% + 20px);
     z-index: -1;
     border-radius: 0 20px 0 20px;
-  }
-
- h1,h2, h3, h4, button {
-    margin: 10px;
-    text-align: center;
-}
-
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color:rgb(238, 198, 65);
-}
-  
+  } 
 
 .rightNav{
     right: 0; 
     display: flex;
     justify-content: flex-end;
     width: 100%;
-}
-
-.profilePicture { 
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    right: 50%;
-    left: 50%;
-    top: 14%;
+    z-index: 99;
 }
 
 .width100 {
@@ -126,6 +175,28 @@ img {
 
 .hide {
     display: none;
+}
+
+.margin15 {
+    margin: 15px;
+}
+
+.paddingTop10 {
+    padding-top: 10px;
+}
+
+.profileDescriptionContainer { 
+    max-width: 650px;
+    font-size: 16px;
+    font-style: italic; 
+    color: #3e3e97;
+    text-align: justify;
+    letter-spacing: 1px;
+}
+
+.socialMediaContainer { 
+    display: flex;
+    justify-content: center;
 }
 
 .fa {
