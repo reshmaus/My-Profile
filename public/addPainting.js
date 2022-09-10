@@ -31,8 +31,8 @@ function submitHandler(e) {
 
     let bodyObj = {
         name: paintingName.value, 
-        imgUrl: imageURL.value,
-        buyItLink: buyLink.value,
+        img_url: imageURL.value,
+        buy_it_link: buyLink.value,
         price: price.value, 
         description: description.value,
     }
@@ -60,8 +60,8 @@ function updateHandler(e) {
     let bodyObj = {
         id,
         name: paintingName.value, 
-        imgUrl: imageURL.value,
-        buyItLink: buyLink.value,
+        img_url: imageURL.value,
+        buy_it_link: buyLink.value,
         price: price.value, 
         description: description.value,
     }
@@ -78,10 +78,11 @@ function updateHandler(e) {
 const getPaintingById = (id) => {
     axios.get(`/api/painting/${id}`)
     .then(res => {
-        const data = res.data;
+        console.log("--res --", res)
+        const data = res.data[0];
         paintingName.value = data.name; 
-        imageURL.value = data.imgUrl;
-        buyLink.value = data.buyItLink; 
+        imageURL.value = data.img_url;
+        buyLink.value = data.buy_it_link; 
         price.value = data.price; 
         description.value = data.description;  
     });

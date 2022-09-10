@@ -1,11 +1,15 @@
+require('dotenv').config()
 const express = require("express");
 const cors = require("cors");
 const path = require('path')
 const app = express();
- const {paintings, profileDetails } = require('./data')
+const {SERVER_PORT} = process.env
+const {seed} = require('./seed.js') 
 app.use(cors());
 
 app.use(express.json());
+
+app.post('/seed', seed)
 
 app.get('/', function(req,res) {
     res.sendFile(path.join(__dirname, '../public/index.html'));

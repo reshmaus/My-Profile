@@ -6,11 +6,24 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reshmaus/My-Profile.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reshmaus/My-Profile/issues"
+  },
+  "homepage": "https://github.com/reshmaus/My-Profile#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "cors": "^2.8.5",
-    "express": "^4.18.1"
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.21.6"
   }
 }

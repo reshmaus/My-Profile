@@ -1,5 +1,24 @@
+//Boilerplate
+// Let's import the dotenv package,configure it so we can use the variables.
 
-const {paintings, profileDetails, addPainting } = require('./data');
+require("dotenv").config();
+//Now we need to import sequelize
+const Sequelize = require ("sequelize");
+//Destructure the CONNECTION_STRING from our process.env object.
+const{CONNECTION_STRING} = process.env;
+
+//Instantiate a sequelize object from the Sequelize class.
+const sequelize = new Sequelize(CONNECTION_STRING, {
+    dialect: "postgres",
+    dialectOptions: {
+        ssl: {
+            rejectUnauthorized: false
+        }
+    }
+})
+
+
+const { profileDetails } = require('./data');
 
 let globalId = 10;
 
@@ -8,8 +27,7 @@ module.exports = {
     getProfileDetails: (req, res) => {
         try {
             res.status(200).send(profileDetails)
-            // rollbar.info("It's sending all the Info from DB");
-           
+            // rollbar.info("It's sending all the Info from DB"); 
         } catch (error) {
             console.log('ERROR GETTING profileDetails', error)
             // rollbar.error("Error getting all the Info");
@@ -19,9 +37,9 @@ module.exports = {
 
     getPaintings:(req, res) => {
         try {
-            res.status(200).send(paintings)
-            // rollbar.info("It's sending all the Paintings from DB");
-           
+            sequelize.query(`SELECT * FROM paintings ORDER BY id ASC`)
+            .then(dbRes => res.status(200).send(dbRes[0]))
+            .catch(err => console.log(err))   
         } catch (error) {
             console.log('ERROR GETTING Paintings', error)
             // rollbar.error("Error getting all the Paintings");
@@ -31,11 +49,12 @@ module.exports = {
 
     addPainting:(req, res) => {
         try { 
-            let { name, imgUrl, buyItLink, price, description } = req.body 
-            paintings.push({ id:globalId++, name, imgUrl, buyItLink, price, description});
-            res.status(200).send("Painting successfully added.")
-            // rollbar.info("It's sending all the Paintings from DB");
-           
+            let { name, img_url, buy_it_link, price, description } = req.body 
+
+            sequelize.query(`INSERT INTO paintings (name, img_url, buy_it_link, price, description)
+                VALUES ('${name}',  '${img_url}', '${buy_it_link}', '${price}', '${description}');`)
+            .then(dbRes => res.status(200).send(dbRes[0]))
+            .catch(err => console.log(err))   
         } catch (error) {
             console.log('ERROR ADDING Painting', error)
             // rollbar.error("Error getting all the Paintings");
@@ -47,16 +66,17 @@ module.exports = {
     updatePainting:(req, res) => {
         try {
             let { id } = req.params
-            let { name, imgUrl, buyItLink, price, description } = req.body  
-            
-            let index = paintings.findIndex(elem => elem.id === +id) 
-    
-            if(index === -1){
-                res.status(400).send("Wrong input, No data match to update");
-            } else {
-                paintings[index] = { id: +id, name, imgUrl, buyItLink, price, description};  
-                res.status(200).send("Painting updated successfully");
-            }
+            let { name, img_url, buy_it_link, price, description } = req.body  
+          //  name, img_url, buy_it_link, price
+            sequelize.query(`UPDATE paintings
+                SET name='${name}',
+                img_url='${img_url}',
+                buy_it_link='${buy_it_link}',
+                price='${price}',
+                description='${description}'
+                WHERE id=${id};`) 
+                .then(dbRes => res.status(200).send(dbRes[0]))
+                .catch(err => console.log(err))  
             // rollbar.info("It's sending all the Paintings from DB");
            
         } catch (error) {
@@ -68,25 +88,16 @@ module.exports = {
 
     deletePainting: (req, res) => { 
         let { id } = req.params 
-        
-        let index = paintings.findIndex(elem => elem.id === +id);
-        if(index === -1){
-            res.status(400).send("Wrong input, No data match to delete");
-        } else {
-            let returnVal = paintings[index].name;
-            paintings.splice(index, 1);   
-            res.status(200).send(`${returnVal} - deleted successfully`);
-        }  
+        sequelize.query(`delete from paintings where id=${id}`)
+            .then(dbRes => res.status(200).send('deleted successfully'))
+            .catch(err => console.log(err))  
     },
 
     getPaintingById: (req, res) => { 
         let { id } = req.params 
         
-        let index = paintings.findIndex(elem => elem.id === +id);
-        if(index === -1){
-            res.status(400).send("Wrong input, No painting found");
-        } else { 
-            res.status(200).send(paintings[index]);
-        }  
+        sequelize.query(`SELECT * FROM paintings where id=${id}`)
+            .then(dbRes => res.status(200).send(dbRes[0]))
+            .catch(err => console.log(err))  
     },
 }

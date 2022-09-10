@@ -9,28 +9,28 @@ const isAdmin = urlParams.get('isAdmin')
 const makePaintingChoiceCard = (ProfileInfo) => {
     return `
         <div class="paintingCards outline"> 
-        <img src='${ProfileInfo.imgUrl}' alt='${ProfileInfo.name}'/> 
+        <img src='${ProfileInfo.img_url}' alt='${ProfileInfo.name}'/> 
         <h3>${ProfileInfo.name}</h3>
         <h4>Price: ${ProfileInfo.price}</h4>
          </div>
     `
 }
 
-const makePaintingCardDisplay = (ProfileInfo) => {
-    let btnHtml = `<button class="buyBtn" onclick=buyPainting('${ProfileInfo.buyItLink}')> Buy </button>`;
+const makePaintingCardDisplay = (painting) => {
+    let btnHtml = `<button class="buyBtn" onclick=buyPainting('${painting.buy_it_link}')> Buy </button>`;
 
     if(isAdmin){
-        btnHtml = `<button class="updateBtn" onclick=updatePainting(${ProfileInfo.id})> Update </button>`;
+        btnHtml = `<button class="updateBtn" onclick=updatePainting(${painting.id})> Update </button>`;
     }
 
     return `
         <div class="paintingCards outline"> 
             <div class="cardImgContainer">
-                <img class="cardImg" src='${ProfileInfo.imgUrl}' alt='${ProfileInfo.name}'/> 
+                <img class="cardImg" src='${painting.img_url}' alt='${painting.name}'/> 
             </div>
             <div class="cardBelowContainer">
-                <h3>${ProfileInfo.name}</h3>
-                <h4>Price: ${ProfileInfo.price}</h4>
+                <h3>${painting.name}</h3>
+                <h4>Price: ${painting.price}</h4>
                 ${btnHtml} 
             </div>
         </div>
@@ -45,8 +45,8 @@ const updatePainting = (id) => {
     }
 }
 
-const buyPainting = (buyItLink) => {  
-    window.open(buyItLink); 
+const buyPainting = (buy_it_link) => {  
+    window.open(buy_it_link); 
 } 
 
 const getPaintings = () => {

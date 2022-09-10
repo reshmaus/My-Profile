@@ -43,7 +43,7 @@ const getPaintings = () => {
 };
 
 const addPainting = () => {
-    axios.post("/api/painting", { name, imgUrl, buyItLink, price: inputCreate.value })
+    axios.post("/api/painting", { name, img_url, buyItLink, price: inputCreate.value })
     .then(res => {
         const data = res.data;
         inputCreate.value = '';
