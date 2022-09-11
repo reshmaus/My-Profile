@@ -43,4 +43,5 @@ if(isAdmin){
     addPaintingLink.classList.remove('hide'); 
     homeLink.href = './?isAdmin=true';
     myPaintingLink.href = './myPaintings.html?isAdmin=true';
+    addPaintingLink.href = './painting.html?isAdmin=true';
 }

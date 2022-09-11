@@ -23,7 +23,7 @@ const makePaintingCardDisplay = (painting) => {
     return `
         <div class="paintingCards outline"> 
             <div class="cardImgContainer">
-                <img class="cardImg" src='${painting.img_url}' alt='${painting.name}'/> 
+                <img class="cardImg" onclick="viewPdp(${painting.id})" src='${painting.img_url}' alt='${painting.name}'/> 
             </div>
             <div class="cardBelowContainer">
                 <h3>${painting.name}</h3>
@@ -34,11 +34,19 @@ const makePaintingCardDisplay = (painting) => {
     `
 }
 
+const viewPdp = (id) => {  
+    if(isAdmin){
+        window.location.href = `/painting.html?id=${id}&isAdmin=true`;  
+    } else { 
+        window.location.href = `/painting.html?id=${id}`; 
+    }
+}
+
 const updatePainting = (id) => {  
     if(isAdmin){
-        window.location.href = `/addPainting.html?id=${id}&isAdmin=true`;  
+        window.location.href = `/painting.html?id=${id}&isAdmin=true`;  
     } else { 
-        window.location.href = `/addPainting.html?id=${id}`; 
+        window.location.href = `/painting.html?id=${id}`; 
     }
 }
 

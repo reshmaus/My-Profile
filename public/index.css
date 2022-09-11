@@ -35,7 +35,7 @@ button {
     margin: 10px;
     text-align: center;
     padding: 5px 10px;
-    font-size: 18px; 
+    font-size: 16px; 
 }  
 
 img.Welcome{
@@ -102,6 +102,11 @@ img {
     width: 140px;  
 }
 
+.flexDiv {
+  display: flex;
+  justify-content: center;
+}
+
 .loading {
     width: 100%;
     margin: 0 auto;
@@ -154,6 +159,7 @@ img {
 .cardImg {
     width: auto;
     height: 115px;
+    cursor: pointer;
 } 
 
 .cardBelowContainer { 
@@ -226,6 +232,11 @@ img {
   .fa-facebook {
     background: #3B5998;
     color: white;
+  }
+
+  .imgView {
+    width: 70%; 
+    margin: 0 auto;
   }
 
   /* Fade in effect start */

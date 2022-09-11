@@ -26,8 +26,8 @@ app.get('/mypaintings.html', function(req,res) {
   // rollbar.log("Accessed HTML successfully")
 });
 
-app.get('/addpainting.html', function(req,res) {
-  res.sendFile(path.join(__dirname, '../public/addPainting.html'));
+app.get('/painting.html', function(req,res) {
+  res.sendFile(path.join(__dirname, '../public/painting.html'));
   // rollbar.log("Accessed HTML successfully")
 });
 
@@ -47,8 +47,8 @@ app.get('/main.js', (req, res) => {
     // rollbar.log("Accessed js file successfully")
   })
 
-  app.get('/addpainting.js', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/addPainting.js'))
+  app.get('/painting.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/painting.js'))
     // rollbar.log("Accessed js file successfully")
   })
 
