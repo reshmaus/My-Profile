@@ -1,4 +1,4 @@
-# My fullstack appliation
+# My fullstack appliation by Reshma Gayakwad
 
 <sup>:apple: MVP- My Profile Application</sup>
 
@@ -32,10 +32,38 @@ They can buy the painting from here without going to an Etsy account.
 Extensive Error handling 
 
 ## :exclamation: Tech Stack
+Javascript
+Node.js
+Axios - For Api call
+Sequelize - PostGres
+pg-hstore
+express
+cors
+rollerbar - Log's
+
 
 
 ## :exclamation: Getting Started
+npm init -y
+npm i express cors
+npm i axios
+npm i dot env
+npm i sequelize
+npm i pg pg-hstore
+npm i rollerbar
 
+## Run Server locally
+nodemon server/index.js [[ To Run server ]]
  
 
-### [:link: How to do Skills Assessments from Github Classroom](https://fellowship.hackbrightacademy.com/materials/foundations/resources/how-to-skills-github/)
+
+### [:link: Figma_mockup_diagram](https://www.figma.com/file/M7NkLGIHf8YLuhM2J2U9uK/My-profile-project?node-id=0%3A1)
+
+
+### [:link: Rollerbar]( )
+
+
+### [:link: Heroku]( )
+
+
+### [:link: ]( )
