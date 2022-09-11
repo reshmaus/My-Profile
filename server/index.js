@@ -49,8 +49,8 @@ app.get('/main.js', (req, res) => {
 
 const {getPaintings, getProfileDetails, addPainting, updatePainting, deletePainting, getPaintingById } = require('./controller');
 
-app.get("/api/profileDetails", getProfileDetails);
-app.get("/api/paintings", getPaintings);
+app.get("/api/profileDetails/:profileId", getProfileDetails);
+app.get("/api/paintings/:profileId", getPaintings);
 app.post("/api/painting", addPainting);
 app.put("/api/painting/:id", updatePainting); 
 app.delete("/api/painting/:id", deletePainting); 

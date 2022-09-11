@@ -8,9 +8,11 @@ let buyLink = document.querySelector('#buyLink')
 let price = document.querySelector('#price')
 let description = document.querySelector('#description') 
 
-const urlParams = new URLSearchParams(location.search);
-const isAdmin = urlParams.get('isAdmin')  
-const id = urlParams.get('id')
+// This will change based on which profile we choose, For now hard coding to demo
+const profile_Id = 1;
+
+const urlParms = new URLSearchParams(location.search); 
+const id = urlParms.get('id')
 
 
 const addPainting = (bodyObj) => {
@@ -18,11 +20,7 @@ const addPainting = (bodyObj) => {
     .then(res => {
         const data = res.data;
         alert(res.data);
-        paintingName.value = ''; 
-        imageURL.value = '';
-        buyLink.value = ''; 
-        price.value = ''; 
-        description.value = '';  
+        window.location.href = `/myPaintings.html?isAdmin=true`;  
     });
 };
 
@@ -30,6 +28,7 @@ function submitHandler(e) {
     e.preventDefault() 
 
     let bodyObj = {
+        profile_id: profile_Id,
         name: paintingName.value, 
         img_url: imageURL.value,
         buy_it_link: buyLink.value,
@@ -109,9 +108,4 @@ if(id){
     getPaintingById(id);
 } else {
     addPaintingButton.classList.remove('hide')
-}
-
-if(isAdmin){ 
-    homeLink.href = './?isAdmin=true';
-    myPaintingLink.href = './myPaintings.html?isAdmin=true';
-}
+} 

@@ -1,18 +1,15 @@
-const profileInfo = document.querySelector('#paintingCards') 
-const addPaintingLink = document.querySelector('#addPaintingLink')   
-const myPaintingLink = document.querySelector('#myPaintingLink')     
-const homeLink = document.querySelector('#homeLink')    
+const paintingContainer = document.querySelector('#paintingCards')     
+paintingContainer.innerHTML = '<div class="loading">Loading....</div>'
+// This will change based on which profile we choose, For now hard coding to demo
+const idProfile = 1;
 
-const urlParams = new URLSearchParams(location.search);
-const isAdmin = urlParams.get('isAdmin') 
- 
-const makePaintingChoiceCard = (ProfileInfo) => {
+const makePaintingChoiceCard = (painting) => {
     return `
         <div class="paintingCards outline"> 
-        <img src='${ProfileInfo.img_url}' alt='${ProfileInfo.name}'/> 
-        <h3>${ProfileInfo.name}</h3>
-        <h4>Price: ${ProfileInfo.price}</h4>
-         </div>
+            <img src='${ProfileInfo.img_url}' alt='${painting.name}'/> 
+            <h3>${painting.name}</h3>
+            <h4>Price: ${painting.price}</h4>
+        </div>
     `
 }
 
@@ -50,7 +47,7 @@ const buyPainting = (buy_it_link) => {
 } 
 
 const getPaintings = () => {
-    axios.get("/api/paintings")
+    axios.get(`/api/paintings/${idProfile}`)
         .then((res) => {
             const data1 = res.data;
             renderPaintings(res.data);
@@ -58,17 +55,11 @@ const getPaintings = () => {
 };
 
 const renderPaintings = (painting) => { 
-
+    paintingContainer.innerHTML = '';
     painting.forEach(painting => {
         let cardHtml = makePaintingCardDisplay(painting)
-        profileInfo.innerHTML += cardHtml
+        paintingContainer.innerHTML += cardHtml
     })
 }
  
-getPaintings();
-
-if(isAdmin){
-    addPaintingLink.classList.remove('hide'); 
-    homeLink.href = './?isAdmin=true';
-    myPaintingLink.href = './myPaintings.html?isAdmin=true';
-}
+getPaintings(); 
