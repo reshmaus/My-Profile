@@ -26,13 +26,8 @@ module.exports = {
 
     getProfileDetails: (req, res) => {
         try {
-            let { profileId } = req.params
-            // res.status(200).send(profileDetails)
+            let { profileId } = req.params 
             // rollbar.info("It's sending all the Info from DB"); 
-
-            
-            ;
-
             sequelize.query(`SELECT pro.first_name, pro.last_name, pro.profile_title, pro.address, abo.description, soc.url, soc.mode 
             FROM profile AS pro, about_me AS abo, social_platform as soc    
             WHERE   pro.profile_id = ${profileId} AND abo.profile_id = ${profileId} AND soc.profile_id = ${profileId}`)
@@ -108,8 +103,7 @@ module.exports = {
     updatePainting:(req, res) => {
         try {
             let { id } = req.params
-            let { name, img_url, buy_it_link, price, description } = req.body  
-          //  name, img_url, buy_it_link, price
+            let { name, img_url, buy_it_link, price, description } = req.body   
             sequelize.query(`UPDATE paintings
                 SET name='${name}',
                 img_url='${img_url}',
