@@ -179,6 +179,7 @@ img {
     justify-content: flex-end;
     width: 100%;
     z-index: 99;
+    padding: 20px 0px 0px 0px;
 }
 
 .width100 {
