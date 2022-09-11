@@ -121,6 +121,15 @@ img {
     width: 100%;
 }
 
+.containerNew {
+  display: flex;  
+  flex-direction: column;
+  align-items: center;
+  padding: 160px 15px;
+  width: 100%;
+  font-size: 20px;
+}
+
 .addPaintingContainer { 
     width: 100%;
     max-width: 650px;

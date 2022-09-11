@@ -16,6 +16,11 @@ app.get('/', function(req,res) {
     // rollbar.log("Accessed HTML successfully")
 });
 
+app.get('/select.html', function(req,res) {
+  res.sendFile(path.join(__dirname, '../public/select.html'));
+  // rollbar.log("Accessed HTML successfully")
+});
+
 app.get('/mypaintings.html', function(req,res) {
   res.sendFile(path.join(__dirname, '../public/myPaintings.html'));
   // rollbar.log("Accessed HTML successfully")
