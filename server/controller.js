@@ -3,6 +3,18 @@
 
 require("dotenv").config();
 //Now we need to import sequelize
+
+// include and initialize the rollbar library with your access token
+var Rollbar = require('rollbar')
+var rollbar = new Rollbar({
+  accessToken: '0c36509e3fc44b3fa1802e6ee41b95ee',
+  captureUncaught: true,
+  captureUnhandledRejections: true,
+})
+
+// record a generic message and send it to Rollbar
+rollbar.log('Hello world!')
+
 const Sequelize = require ("sequelize");
 //Destructure the CONNECTION_STRING from our process.env object.
 const{CONNECTION_STRING} = process.env;
