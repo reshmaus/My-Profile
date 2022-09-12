@@ -27,7 +27,7 @@ module.exports = {
     getProfileDetails: (req, res) => {
         try {
             let { profileId } = req.params 
-            // rollbar.info("It's sending all the Info from DB"); 
+             rollbar.info("It's sending all the Info from DB"); 
             sequelize.query(`SELECT pro.first_name, pro.last_name, pro.profile_title, pro.address, abo.description, soc.url, soc.mode 
             FROM profile AS pro, about_me AS abo, social_platform as soc    
             WHERE   pro.profile_id = ${profileId} AND abo.profile_id = ${profileId} AND soc.profile_id = ${profileId}`)
@@ -60,12 +60,11 @@ module.exports = {
                     }
 
                     res.status(200).send(profileObj)
-                })
-            .catch(err => console.log(err))    
+                }) 
 
         } catch (error) {
             console.log('Error Getting ProfileDetails', error)
-            // rollbar.error("Error getting all the Info");
+             rollbar.error("Error getting all the ProfileDetails");
             res.sendStatus(400)
         }
     },
@@ -75,11 +74,11 @@ module.exports = {
             let { profileId } = req.params
 
             sequelize.query(`SELECT * FROM paintings where profile_id=${profileId} ORDER BY id ASC`)
-            .then(dbRes => res.status(200).send(dbRes[0]))
-            .catch(err => console.log(err))   
+            .then(dbRes => res.status(200).send(dbRes[0])) 
+            rollbar.log("sending back all paintings");
         } catch (error) {
             console.log('Error Getting Paintings', error)
-            // rollbar.error("Error getting all the Paintings");
+             rollbar.error("Error getting all the Paintings");
             res.sendStatus(400)
         }
     },
@@ -90,11 +89,11 @@ module.exports = {
 
             sequelize.query(`INSERT INTO paintings (profile_id, name, img_url, buy_it_link, price, description)
                 VALUES ('${profile_id}', '${name}',  '${img_url}', '${buy_it_link}', '${price}', '${description}');`)
-            .then(dbRes => res.status(200).send('New Painitng Added Successfully'))
-            .catch(err => console.log(err))   
+            .then(dbRes => res.status(200).send('New Painitng Added Successfully')) 
+            rollbar.info("New Painitng Added Successfully");
         } catch (error) {
             console.log('Error Adding Painting', error)
-            // rollbar.error("Error getting all the Paintings");
+             rollbar.error("Error adding the Painting");
             res.sendStatus(400)
         }
     },
@@ -113,11 +112,11 @@ module.exports = {
                 WHERE id=${id};`) 
                 .then(dbRes => res.status(200).send('Painitng Updated Successfully'))
                 .catch(err => console.log(err))  
-            // rollbar.info("It's sending all the Paintings from DB");
+             rollbar.info("It's updating the Painting in DB");
            
         } catch (error) {
             console.log('ERROR ADDING Painting', error)
-            // rollbar.error("Error getting all the Paintings");
+             rollbar.error("Error updating the Painting");
             res.sendStatus(400)
         }
     },
@@ -127,6 +126,7 @@ module.exports = {
         sequelize.query(`delete from paintings where id=${id}`)
             .then(dbRes => res.status(200).send('Painitng Deleted Successfully'))
             .catch(err => console.log(err))  
+            rollbar.log("Delete Painting");
     },
 
     getPaintingById: (req, res) => { 

@@ -51,6 +51,7 @@ npm i dot env
 npm i sequelize
 npm i pg pg-hstore
 npm i rollerbar
+npm install --save rollbar
 
 ## Run Server locally
 nodemon server/index.js [[ To Run server ]]
@@ -59,8 +60,6 @@ nodemon server/index.js [[ To Run server ]]
 
 ### [:link: Figma_mockup_diagram](https://www.figma.com/file/M7NkLGIHf8YLuhM2J2U9uK/My-profile-project?node-id=0%3A1)
 
-
-### [:link: Rollerbar]( )
 
 
 ### [:link: Heroku]( )
