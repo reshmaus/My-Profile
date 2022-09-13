@@ -132,6 +132,12 @@ img {
   padding: 160px 15px;
   width: 100%;
   font-size: 20px;
+  font-weight: bold;
+}
+
+
+.containerNew a {
+  font-size: 24px;
 }
 
 .addPaintingContainer { 
