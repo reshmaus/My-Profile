@@ -32,7 +32,7 @@ app.get('/select.html', function(req,res) {
      rollbar.log("Accessed HTML successfully")
 });
 
-app.get('/mypaintings.html', function(req,res) {
+app.get('/myPaintings.html', function(req,res) {
   res.sendFile(path.join(__dirname, '../public/myPaintings.html'));
     rollbar.log("Accessed HTML successfully")
 });
@@ -58,7 +58,7 @@ app.get('/utils.js', (req, res) => {
 }) 
 
 
-  app.get('/mypaintings.js', (req, res) => {
+  app.get('/myPaintings.js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/myPaintings.js'))
       rollbar.log("Accessed js file successfully")
   })
