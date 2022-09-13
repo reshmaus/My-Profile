@@ -3,14 +3,20 @@ paintingContainer.innerHTML = '<div class="loading">Loading....</div>'
 // This will change based on which profile we choose, For now set in cookie 
 const idProfile = getCookie('profileId')
 
-const makePaintingChoiceCard = (painting) => {
-    return `
-        <div class="paintingCards outline"> 
-            <img src='${ProfileInfo.img_url}' alt='${painting.name}'/> 
-            <h3>${painting.name}</h3>
-            <h4>Price: ${painting.price}</h4>
-        </div>
-    `
+const getPaintings = () => {
+    axios.get(`/api/paintings/${idProfile}`)
+        .then((res) => {
+            const data1 = res.data;
+            renderPaintings(res.data);
+    });
+};
+
+const renderPaintings = (painting) => { 
+    paintingContainer.innerHTML = '';
+    painting.forEach(painting => {
+        let cardHtml = makePaintingCardDisplay(painting)
+        paintingContainer.innerHTML += cardHtml
+    })
 }
 
 const makePaintingCardDisplay = (painting) => {
@@ -32,7 +38,7 @@ const makePaintingCardDisplay = (painting) => {
             </div>
         </div>
     `
-}
+}  
 
 const viewPdp = (id) => {  
     if(isAdmin){
@@ -54,20 +60,6 @@ const buyPainting = (buy_it_link) => {
     window.open(buy_it_link); 
 } 
 
-const getPaintings = () => {
-    axios.get(`/api/paintings/${idProfile}`)
-        .then((res) => {
-            const data1 = res.data;
-            renderPaintings(res.data);
-    });
-};
 
-const renderPaintings = (painting) => { 
-    paintingContainer.innerHTML = '';
-    painting.forEach(painting => {
-        let cardHtml = makePaintingCardDisplay(painting)
-        paintingContainer.innerHTML += cardHtml
-    })
-}
  
 getPaintings(); 

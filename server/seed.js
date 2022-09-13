@@ -52,9 +52,9 @@ module.exports = {
         (1, 'https://www.pinterest.com/business/hub/', 'Pinterest');
          
         insert into about_me (profile_id, description)
-        values(1, 'We all have different ways of expressing ourselves and mine is through art'),
-        (1, 'Hi, I am self-trained Artist, born and raised in INDIA, I used to do cloth painting since my childhood in summer vacations, once I had been to the Art Exhibition that inspired me to keep my spirit of painting alive. Then I switched to Acrylic Painting on canvas.Painting has always been my passion'),        
-        (1, 'Since my hubby works in United States, we had to move to Minnesota and as a mother of two kids it has always been a constant struggle to keep my passion alive.Now that my kids are growing up, they motivate me to work harder, and thats how I am able to follow my dreams, I usually work from my private studio.As an Artist inspiration comes to me from my parents,My Artwork is unique I do not believe in sticking to one style or one pattern.'),
+        values(1, 'We all have different ways of expressing ourselves and mine is through Art. Art promotes social development,creativity and self worth.'),
+        (1, 'Hi, I am Reshma, self-trained Artist, born and brought up in INDIA. As a kid,I loved to transform any piece of cloth into an interesting and colorfull one with my skills. Now I not only paint on clothes but also on canvas. once I had been to the Art Exhibition that inspired me to keep my spirit of painting alive. Then I switched to Acrylic Painting on canvas.Painting has always been my passion'),        
+        (1, 'Since my husband works in United States, we had to move to Minnesota. As a proud mother of two kids it has always been a constant struggle to keep my passion alive.Now that my kids are growing up, they motivate me to work harder, and thats how I am able to follow my dreams, and be a role model to my kids.I am a keen learner and I stronly belive in the fact that there's no end to learning, I like to take risks and try out new patterns. I usually work from my private studio.As an Artist inspiration comes to me from my parents,My Artwork is unique I do not believe in sticking to one style or one pattern.'),
         (1, 'Why box yourself when there is so much to explore!!!!'),
         (1, 'Thank you for taking time to know me.');
 

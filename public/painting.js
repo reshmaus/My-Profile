@@ -103,7 +103,8 @@ const getPaintingById = (id) => {
         imgViewReadOnly.src = data.img_url;
         buyLinkReadOnly.value = data.buy_it_link; 
         priceReadOnly.value = data.price; 
-        descriptionReadOnly.value = data.description;   
+        descriptionReadOnly.value = data.description;
+        // Add value to constant here   
         buy_it_link = data.buy_it_link;
     });
 };

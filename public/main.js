@@ -1,4 +1,3 @@
-const profileDetailsBtn = document.querySelector('#profile-details')
 const profileInfo = document.querySelector('#profileInfo')
 const socialMedia = document.querySelector('#socialMedia')
 
