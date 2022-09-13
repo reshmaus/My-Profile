@@ -1,7 +1,7 @@
 const paintingContainer = document.querySelector('#paintingCards')     
 paintingContainer.innerHTML = '<div class="loading">Loading....</div>'
-// This will change based on which profile we choose, For now hard coding to demo
-const idProfile = 1;
+// This will change based on which profile we choose, For now set in cookie 
+const idProfile = getCookie('profileId')
 
 const makePaintingChoiceCard = (painting) => {
     return `

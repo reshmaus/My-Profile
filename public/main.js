@@ -6,11 +6,11 @@ const urlParams = new URLSearchParams(location.search);
 const isAdmin = urlParams.get('isAdmin')  
 
 // This will change based on which profile we choose, For now hard coding to demo
-const profileId = 1;
+// window.profileId = 0;
 
 const getProfileDetails = () => {
     console.log("- getProfileDetails - ")
-    axios.get(`/api/profileDetails/${profileId}`)
+    axios.get(`/api/profileDetails`)
         .then((res) => {
             const data1 = res.data; 
             if(profileInfo){
@@ -24,7 +24,7 @@ const getProfileDetails = () => {
 
 const makeProfileInfoDisplay = (profileInfo) => {
     const description = profileInfo.aboutMe.map((el) => `<p class="margin15">${el}</p>`).join('')
-    
+    setCookie('profileId', profileInfo.profileId)
     return `
         <div class=""> 
             <h1>${profileInfo.name}</h1> 

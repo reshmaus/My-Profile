@@ -19,9 +19,9 @@ let imgViewReadOnly = document.querySelector('#imgViewReadOnly')
 let adminView = document.querySelector('#adminView')  
 let guestView = document.querySelector('#guestView')  
 let BuyButton = document.querySelector('#BuyButton') 
-
-// This will change based on which profile we choose, For now hard coding to demo
-const profile_Id = 1;
+ 
+// This will change based on which profile we choose, For now set in cookie 
+const profile_Id = getCookie('profileId');
 let buy_it_link;
 const urlParms = new URLSearchParams(location.search); 
 const id = urlParms.get('id')
@@ -89,8 +89,7 @@ function updateHandler(e) {
 
 const getPaintingById = (id) => {
     axios.get(`/api/painting/${id}`)
-    .then(res => {
-        console.log("--res --", res)
+    .then(res => { 
         const data = res.data[0];
         paintingName.value = data.name; 
         imageURL.value = data.img_url;

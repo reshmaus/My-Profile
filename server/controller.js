@@ -27,22 +27,18 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
             rejectUnauthorized: false
         }
     }
-})
-
-
-const { profileDetails } = require('./data');
+}) 
 
 let globalId = 10;
 
 module.exports = {
 
     getProfileDetails: (req, res) => {
-        try {
-            let { profileId } = req.params 
+        try { 
              rollbar.info("It's sending all the Info from DB"); 
-            sequelize.query(`SELECT pro.first_name, pro.last_name, pro.profile_title, pro.address, abo.description, soc.url, soc.mode 
+            sequelize.query(`SELECT pro.profile_id, pro.first_name, pro.last_name, pro.profile_title, pro.address, abo.description, soc.url, soc.mode 
             FROM profile AS pro, about_me AS abo, social_platform as soc    
-            WHERE   pro.profile_id = ${profileId} AND abo.profile_id = ${profileId} AND soc.profile_id = ${profileId}`)
+            WHERE pro.first_name = 'Reshma' AND  pro.last_name = 'Gayakwad' AND abo.profile_id = pro.profile_id AND soc.profile_id = pro.profile_id`)
             .then(dbRes => {
                     let profileObj
                     const responseObj = dbRes[0];
@@ -64,6 +60,7 @@ module.exports = {
 
 
                     profileObj = {
+                        profileId: responseObjFirst.profile_id,
                         name: `${responseObjFirst.first_name} ${responseObjFirst.last_name}`,
                         profileTitle: responseObjFirst.profile_title,
                         address: responseObjFirst.address,

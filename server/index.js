@@ -52,6 +52,11 @@ app.get('/main.js', (req, res) => {
       rollbar.log("Accessed js file successfully")
   })
 
+app.get('/utils.js', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/utils.js'))
+    rollbar.log("Accessed js file successfully")
+}) 
+
 
   app.get('/mypaintings.js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/myPaintings.js'))
@@ -65,7 +70,8 @@ app.get('/main.js', (req, res) => {
 
 const {getPaintings, getProfileDetails, addPainting, updatePainting, deletePainting, getPaintingById } = require('./controller');
 
-app.get("/api/profileDetails/:profileId", getProfileDetails);
+// app.get("/api/profileDetails/:profileId", getProfileDetails);
+app.get("/api/profileDetails", getProfileDetails);
 app.get("/api/paintings/:profileId", getPaintings);
 app.post("/api/painting", addPainting);
 app.put("/api/painting/:id", updatePainting); 
