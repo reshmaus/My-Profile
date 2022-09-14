@@ -210,8 +210,8 @@ img {
 }
 
 .profileDescriptionContainer { 
-    max-width: 650px;
-    font-size: 18px;
+    max-width: 800px;
+    font-size: 22px;
     font-style: italic; 
     color: #3e3e97;
     text-align: justify;
