@@ -32,10 +32,10 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
 let globalId = 10;
 
 module.exports = {
-
+    // Currently fetching only Reshma Gayakwad profile, for demo. Will have update it later.
     getProfileDetails: (req, res) => {
         try { 
-             rollbar.info("It's sending all the Info from DB"); 
+             rollbar.info("It's sending all the Info from DB");  
             sequelize.query(`SELECT pro.profile_id, pro.first_name, pro.last_name, pro.profile_title, pro.address, abo.description, soc.url, soc.mode 
             FROM profile AS pro, about_me AS abo, social_platform as soc    
             WHERE pro.first_name = 'Reshma' AND  pro.last_name = 'Gayakwad' AND abo.profile_id = pro.profile_id AND soc.profile_id = pro.profile_id ORDER BY abo.id ASC`)
@@ -78,7 +78,7 @@ module.exports = {
         }
     },
 
-    getPaintings:(req, res) => {
+    getPaintingsByProfileId:(req, res) => {
         try {
             let { profileId } = req.params
 
@@ -108,7 +108,7 @@ module.exports = {
     },
 
 
-    updatePainting:(req, res) => {
+    updatePaintingById:(req, res) => {
         try {
             let { id } = req.params
             let { name, img_url, buy_it_link, price, description } = req.body   
@@ -130,7 +130,7 @@ module.exports = {
         }
     },
 
-    deletePainting: (req, res) => { 
+    deletePaintingById: (req, res) => { 
         let { id } = req.params 
         sequelize.query(`delete from paintings where id=${id}`)
             .then(dbRes => res.status(200).send('Painitng Deleted Successfully'))

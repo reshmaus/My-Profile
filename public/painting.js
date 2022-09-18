@@ -21,13 +21,14 @@ let guestView = document.querySelector('#guestView')
 let BuyButton = document.querySelector('#BuyButton') 
  
 // This will change based on which profile we choose, For now set in cookie 
-const profile_Id = getCookie('profileId');
-let buy_it_link;
+const profileId = getCookie('profileId');
+let buyItLink;
 const urlParms = new URLSearchParams(location.search); 
 const id = urlParms.get('id')
-const adminIs = urlParms.get('isAdmin')  
+// The constant will give error it its isAdmin, As main.js has same constant defined. So have to define constant is_admin 
+const is_admin = urlParms.get('isAdmin')  
 
-
+// Add new painting Api call
 const addPainting = (bodyObj) => {
     axios.post("/api/painting", bodyObj)
     .then(res => {
@@ -37,11 +38,12 @@ const addPainting = (bodyObj) => {
     });
 };
 
+// Add new painting button handler 
 function submitHandler(e) {
     e.preventDefault() 
 
     let bodyObj = {
-        profile_id: profile_Id,
+        profile_id: profileId,
         name: paintingName.value, 
         img_url: imageURL.value,
         buy_it_link: buyLink.value,
@@ -58,6 +60,7 @@ function submitHandler(e) {
     description.value = '';  
 } 
 
+// Update painting Api call
 const updatePainting = (bodyObj) => {
     axios.put(`/api/painting/${id}`, bodyObj)
     .then(res => {
@@ -66,6 +69,7 @@ const updatePainting = (bodyObj) => {
     });
 };
 
+// Update existing painting details button handler
 function updateHandler(e) {
     e.preventDefault() 
 
@@ -87,6 +91,7 @@ function updateHandler(e) {
     description.value = '';  
 } 
 
+// Get painting by id Api call
 const getPaintingById = (id) => {
     axios.get(`/api/painting/${id}`)
     .then(res => { 
@@ -105,10 +110,11 @@ const getPaintingById = (id) => {
         priceReadOnly.value = data.price; 
         descriptionReadOnly.value = data.description;
         // Add value to constant here   
-        buy_it_link = data.buy_it_link;
+        buyItLink = data.buy_it_link;
     });
 };
 
+// Delete painting Api call and button handler
 const deleteHandler = (e) => { 
     e.preventDefault() 
 
@@ -119,14 +125,16 @@ const deleteHandler = (e) => {
     });
 };
 
+// Update the image url to shoe new uploaded image on change  
 const updateImage = (e) => { 
     e.preventDefault()  
     imgView.src = imageURL.value; 
 };
 
+// Buy painting button click handler 
 const buyPainting = (e) => {
     e.preventDefault()    
-    window.open(buy_it_link); 
+    window.open(buyItLink); 
 } 
 
 addPaintingButton.addEventListener('click', submitHandler)
@@ -136,13 +144,13 @@ imageURL.addEventListener('change', updateImage)
 BuyButton.addEventListener('click', buyPainting)
 
 
-if(adminIs){
+if(is_admin){
     adminView.classList.remove('hide')
 } else { 
     guestView.classList.remove('hide')
 }
 
-buy_it_link = '';
+buyItLink = '';
 if(id){ 
     deletePaintingButton.classList.remove('hide')
     updateButton.classList.remove('hide')

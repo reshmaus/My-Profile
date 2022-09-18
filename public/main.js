@@ -1,29 +1,32 @@
-const profileInfo = document.querySelector('#profileInfo')
-const socialMedia = document.querySelector('#socialMedia')
+const profileInfoDiv = document.querySelector('#profileInfo')
+const socialMediaDiv = document.querySelector('#socialMedia')
 
 const urlParams = new URLSearchParams(location.search);
-const isAdmin = urlParams.get('isAdmin')  
+const isAdmin = urlParams.get('isAdmin')   
 
-// This will change based on which profile we choose, For now hard coding to demo
-// window.profileId = 0;
-
-const getProfileDetails = () => {
-    console.log("- getProfileDetails - ")
+// To get profile details Api call and rendering content on page
+const getProfileDetails = () => { 
     axios.get(`/api/profileDetails`)
         .then((res) => {
-            const data1 = res.data; 
-            if(profileInfo){
-                profileInfo.innerHTML = makeProfileInfoDisplay(res.data);
+            const profileInfo = res.data; 
+            
+            // This condition is required, As this Js file is used by all other page's and only on home page have the Div to render the profile details.
+            if(profileInfoDiv){
+                profileInfoDiv.innerHTML = makeProfileInfoDisplay(profileInfo);
             }
+
+            // This will change based on which profile we choose, For now hard coding to demo, to pass data between pages
+            setCookie('profileId', profileInfo.profileId)
+
             // Render footer content 
-            socialMedia.innerHTML = res.data.socialPlatforms.map((socialPlatform) => `<a class="margin15" href="${socialPlatform.url}"> ${socialPlatform.mode}</a>`).join('')
+            socialMediaDiv.innerHTML = res.data.socialPlatforms.map((socialPlatform) => `<a class="margin15" href="${socialPlatform.url}"> ${socialPlatform.mode}</a>`).join('')
     });
 };
 
-
+// Build the profile Html to render on page, with profile info api response data
 const makeProfileInfoDisplay = (profileInfo) => {
     const description = profileInfo.aboutMe.map((el) => `<p class="margin15">${el}</p>`).join('')
-    setCookie('profileId', profileInfo.profileId)
+    
     return `
         <div class=""> 
             <h1>${profileInfo.name}</h1> 
@@ -35,7 +38,8 @@ const makeProfileInfoDisplay = (profileInfo) => {
         </div> 
     `
 } 
- 
+
+// Open call method, on js load
 getProfileDetails();
 
 if(isAdmin){

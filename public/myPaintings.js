@@ -1,24 +1,28 @@
-const paintingContainer = document.querySelector('#paintingCards')     
-paintingContainer.innerHTML = '<div class="loading">Loading....</div>'
-// This will change based on which profile we choose, For now set in cookie 
-const idProfile = getCookie('profileId')
+const paintingContainerDiv = document.querySelector('#paintingCards')     
+paintingContainerDiv.innerHTML = '<div class="loading">Loading....</div>'
+// This will change based on which profile we choose, For now its fetched from cookies 
+const profileId = getCookie('profileId')
 
+// Api call to get all paintings 
 const getPaintings = () => {
-    axios.get(`/api/paintings/${idProfile}`)
+    axios.get(`/api/paintings/${profileId}`)
         .then((res) => {
             const data1 = res.data;
             renderPaintings(res.data);
     });
 };
 
+// Renders/ appends the painting cards on to page.
 const renderPaintings = (painting) => { 
-    paintingContainer.innerHTML = '';
+    paintingContainerDiv.innerHTML = '';
+
     painting.forEach(painting => {
         let cardHtml = makePaintingCardDisplay(painting)
-        paintingContainer.innerHTML += cardHtml
+        paintingContainerDiv.innerHTML += cardHtml
     })
 }
 
+// Build html painting card to render on page, with painting details
 const makePaintingCardDisplay = (painting) => {
     let btnHtml = `<button class="buyBtn" onclick=buyPainting('${painting.buy_it_link}')> Buy </button>`;
 
@@ -40,6 +44,7 @@ const makePaintingCardDisplay = (painting) => {
     `
 }  
 
+// On Card painting image click handler
 const viewPdp = (id) => {  
     if(isAdmin){
         window.location.href = `/painting.html?id=${id}&isAdmin=true`;  
@@ -48,6 +53,7 @@ const viewPdp = (id) => {
     }
 }
 
+// On Card update button click handler 
 const updatePainting = (id) => {  
     if(isAdmin){
         window.location.href = `/painting.html?id=${id}&isAdmin=true`;  
@@ -56,10 +62,10 @@ const updatePainting = (id) => {
     }
 }
 
+// On Card buy button click handler
 const buyPainting = (buy_it_link) => {  
     window.open(buy_it_link); 
-} 
+}  
 
-
- 
+// Open call method, on js load
 getPaintings(); 
